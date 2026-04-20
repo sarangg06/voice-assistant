@@ -26,25 +26,17 @@ except ImportError:
 
 load_dotenv()
 
-# ──────────────────────────────────────────────
-# Connection state (module-level singletons)
-# ──────────────────────────────────────────────
 _client = None
 _db     = None
 
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
 DB_NAME   = "jarvis_db"
 
-# Collection names
 COL_HISTORY   = "command_history"
 COL_REMINDERS = "reminders"
 COL_NOTES     = "notes"
 COL_CONTACTS  = "contacts"
 
-
-# ──────────────────────────────────────────────
-# Connection helpers
-# ──────────────────────────────────────────────
 
 def connect_db():
     """

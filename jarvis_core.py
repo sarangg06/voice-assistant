@@ -44,7 +44,6 @@ try:
 except ImportError as _db_err:
     DB_AVAILABLE = False
     print(f"[WARN] jarvis_db not found – DB features disabled. ({_db_err})")
-# ────────────────────────────────────────────────────────────────────────────
 
 load_dotenv()
 
@@ -60,7 +59,6 @@ output_callback = None
 status_callback = None
 tts_lock = threading.Lock()
 
-# initialize-spotify-client--deactivated
 try:
     if SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET and SPOTIFY_REDIRECT_URI:
         sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
@@ -562,11 +560,6 @@ def sendEmail(to, content):
     server.close()
 
 
-# ════════════════════════════════════════════════════════════════════════════
-# DB-powered feature handlers
-# Each function is self-contained so it can be tested independently.
-# ════════════════════════════════════════════════════════════════════════════
-
 def _db_required(feature_name: str) -> bool:
     """Warn the user and return False when DB is unavailable."""
     if not DB_AVAILABLE:
@@ -909,9 +902,6 @@ def handle_db_status():
     log_output(f"[DB] Health check: {status}")
 
 
-# ════════════════════════════════════════════════════════════════════════════
-# Main command dispatcher
-# ════════════════════════════════════════════════════════════════════════════
 
 def process_query(query):
     """Process user commands"""
